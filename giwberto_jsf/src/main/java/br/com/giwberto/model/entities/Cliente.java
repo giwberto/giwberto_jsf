@@ -10,8 +10,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.ForeignKey;
 
 /**
  *
@@ -47,6 +49,11 @@ public class Cliente implements Serializable{
     @Column (name="dataDeCadastro", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeCadastro;
+    
+    @ManyToOne(optional = false)
+    @ForeignKey(name="clientesexo")
+    
+    private Cliente cliente;
 
     public Cliente() {
     }
