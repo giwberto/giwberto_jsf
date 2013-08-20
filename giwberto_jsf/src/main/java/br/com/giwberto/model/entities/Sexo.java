@@ -31,10 +31,10 @@ public class Sexo implements Serializable{
     @Column(name="idSexo",  nullable = false)
     private Integer idSexo;
     
-    @Column(name="Descricao",unique=true, nullable = false, length = 9)
+    @Column(name="descricao",unique=true, nullable = false, length = 9)
     private String descricao;
     
-    @OneToMany(mappedBy="Sexo",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="sexo",fetch = FetchType.LAZY)
     @ForeignKey(name="clientesexo")
     private List<Cliente> clientes;
 

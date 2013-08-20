@@ -20,7 +20,7 @@ import org.hibernate.annotations.ForeignKey;
  */
 
 @Entity
-@Table(name = "cidade")
+@Table(name = "Cidade")
 public class Cidade implements Serializable{
     private static final long serialVersionUID =1L;
     

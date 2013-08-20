@@ -8,9 +8,12 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.ForeignKey;
@@ -42,18 +45,22 @@ public class Cliente implements Serializable{
     @Column (name="cpf", nullable = false, length = 14)
     private String cpf;
     
-    @Column (name="dataDeNascimento", nullable = false)
+    @Column (name="datadenascimento", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeNascimento;
     
-    @Column (name="dataDeCadastro", nullable = false)
+    @Column (name="datadecadastro", nullable = false)
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeCadastro;
     
+    @OneToOne(optional = true,fetch = FetchType.LAZY)
+    @ForeignKey(name="enderecocliente")
+    private Endereco endereco;
+    
     @ManyToOne(optional = false)
     @ForeignKey(name="clientesexo")
-    
-    private Cliente cliente;
+    @JoinColumn(name="idSexo", referencedColumnName = "idSexo")
+    private Sexo sexo;
 
     public Cliente() {
     }
@@ -113,6 +120,26 @@ public class Cliente implements Serializable{
     public void setDataDeCadastro(Date dataDeCadastro) {
         this.dataDeCadastro = dataDeCadastro;
     }
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
+       
+    
+    
 
     @Override
     public int hashCode() {
