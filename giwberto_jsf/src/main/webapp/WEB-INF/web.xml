@@ -15,19 +15,19 @@
         </session-timeout>
     </session-config>
     
-    <dependency>
+<!--    <dependency>
         <groupID>org.primefaces.themes</groupID>
         <artifactID>south-street</artifactID>
         <version>1.0.4</version>
     </dependency>
-    
+    -->
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>south-street</param-value>
     </context-param>
     
-    <!--    Configuração do JavaServer Faces-->
-            
+           <!-- Configurações do JavaServer Faces -->
+    
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
@@ -35,13 +35,25 @@
     
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>Javax.faces.webapp.FacesServlet</servlet-class>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+        
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
+    
+    <security-constraint>
+        <display-name>Bloqueia o browser de acessar arquivos xhtml</display-name>
+        <web-resource-collection>
+            <web-resource-name>xhtml files</web-resource-name>
+            <url-pattern>*.xhtml</url-pattern>
+        </web-resource-collection>
+        <auth-constraint/>
+    </security-constraint>
+    
+    <!-- Configurações do PrimeFaces -->
     
     <servlet>
         <servlet-name>Resource Servlet</servlet-name>
@@ -51,16 +63,6 @@
         <servlet-name>Resource Servlet</servlet-name>
         <url-pattern>/primefaces_resource/*</url-pattern>
     </servlet-mapping>
-    
-    <!--    Bloquear o navegador em caso de renomear para xhtml-->
-    
-    <security-constraint>
-        <display-name>Bloqueia o browser de acessar arquivos xhtml</display-name>
-        <web-resource-collection>
-            <web-resource-name>xhtml files</web-resource-name>
-            <url-pattern>*.xhtml</url-pattern>
-        </web-resource-collection>
-    </security-constraint>
     
     <!--    Filtros de Upload-->
 <!--    <filter>

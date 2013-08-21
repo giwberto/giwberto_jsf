@@ -15,33 +15,30 @@ import org.hibernate.Session;
  */
 public class PhaseListenerGiwberto implements PhaseListener{
 
-    //Antes da Fase
-    @Override
-    public void afterPhase(PhaseEvent fase) {
-        if (fase.getPhaseId().equals(PhaseId.RESTORE_VIEW)) {
-            System.out.println("Antes da fase"+ getPhaseId());
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            session.beginTransaction();
-            FacesContextUtil.setRequestSession(session);
-            
-            
-        }
-    }
-
-    //Depois da Fase
+        //Antes da Fase
     @Override
     public void beforePhase(PhaseEvent fase) {
-        System.out.println("Depois da fase"+ getPhaseId());
+        System.out.println("Antes da fase: "+ fase.getPhaseId());
+        if (fase.getPhaseId().equals(PhaseId.RESTORE_VIEW)) {            
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            FacesContextUtil.setRequestSession(session);            
+        }
+    }
+    
+    //Depois da Fase
+    @Override
+    public void afterPhase(PhaseEvent fase) {
+        System.out.println("Depois da fase: "+ fase.getPhaseId());
         if (fase.getPhaseId().equals(PhaseId.RENDER_RESPONSE)) {
             Session session = FacesContextUtil.getRequestSession();
             try {
                 session.getTransaction().commit();
             } catch (Exception e) {
                 if (session.getTransaction().isActive()) {
-                    session.getTransaction().rollback();    
+                    session.getTransaction().rollback();
                 }
-                            
-            }finally{
+            } finally{
                 session.close();
             }
         }
@@ -49,7 +46,6 @@ public class PhaseListenerGiwberto implements PhaseListener{
 
     @Override
     public PhaseId getPhaseId() {
-        
         return PhaseId.ANY_PHASE;
     }
     
