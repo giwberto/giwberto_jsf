@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -34,8 +35,8 @@ public class Estado implements Serializable{
     @Column (name="sigla", nullable = false, length= 2)
     private String sigla;
     
-    @OneToMany
-    @ForeignKey(name="estadoEndereco")    
+    @OneToMany(mappedBy = "estado",fetch = FetchType.LAZY)
+    @ForeignKey(name="enderecoestado")    
     private List<Endereco> enderecos;
 
     public Estado() {
@@ -66,6 +67,16 @@ public class Estado implements Serializable{
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
+
+    public List<Endereco> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
+    
+    
 
     @Override
     public int hashCode() {

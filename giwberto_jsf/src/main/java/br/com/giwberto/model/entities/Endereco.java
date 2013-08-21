@@ -51,12 +51,12 @@ public class Endereco implements Serializable{
    private Cliente cliente;
    
    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-   @ForeignKey(name="estadoEndereco")
+   @ForeignKey(name="enderecoestado")
    @JoinColumn(name="idEstado", referencedColumnName = "idEstado")
    private Estado estado;
    
    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-   @ForeignKey(name="cidadeEndereco")
+   @ForeignKey(name="enderecocidade")
    @JoinColumn(name="idCidade", referencedColumnName = "idCidade")
    private Cidade cidade;
    
