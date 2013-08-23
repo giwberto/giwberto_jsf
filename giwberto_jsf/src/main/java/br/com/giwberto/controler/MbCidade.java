@@ -19,7 +19,7 @@ import javax.faces.context.FacesContext;
  *
  * @author giwberto
  */
-@ManagedBean(name = "mbCidade")
+@ManagedBean (name = "mbCidade")
 @SessionScoped
 public class MbCidade implements Serializable {
 
