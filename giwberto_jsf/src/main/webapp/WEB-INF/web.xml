@@ -15,15 +15,10 @@
         </session-timeout>
     </session-config>
     
-<!--    <dependency>
-        <groupID>org.primefaces.themes</groupID>
-        <artifactID>south-street</artifactID>
-        <version>1.0.4</version>
-    </dependency>
-    -->
+
     <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>south-street</param-value>
+        <param-value>sam</param-value>
     </context-param>
     
            <!-- Configurações do JavaServer Faces -->
