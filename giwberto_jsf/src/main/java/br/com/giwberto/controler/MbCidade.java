@@ -73,7 +73,7 @@ public class MbCidade implements Serializable {
     }
 
     public List<Cidade> getCidades() {
-        cidades = cidadeDAO().getEntity();
+        cidades = cidadeDAO().getEntities();
         return cidades;
     }
 

@@ -10,6 +10,7 @@ import br.com.giwberto.model.entities.Cliente;
 import br.com.giwberto.model.entities.Endereco;
 import br.com.giwberto.util.FacesContextUtil;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,15 +24,17 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 
-public class mdCliente implements Serializable {
+public class MbCliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    private String confereSenha;
     private Cliente cliente = new Cliente();
     private Endereco endereco = new Endereco();
     private List<Cliente> clientes;
     private List<Endereco> enderecos;
 
-    public mdCliente() {
+    public MbCliente() {
     }
     
     private InterfaceDAO<Cliente> clienteDAO(){
@@ -55,7 +58,9 @@ public class mdCliente implements Serializable {
     }
     
     public String addCliente(){
+        Date date = new Date();
         if(cliente.getIdCliente()== null || cliente.getIdCliente() ==0){
+            cliente.setDataDeCadastro(date);
             insertCliente();
         }else{
             updateCliente();
@@ -67,12 +72,16 @@ public class mdCliente implements Serializable {
 
     private void insertCliente() {
     clienteDAO().save(cliente);
+    endereco.setCliente(cliente);
+    enderecoDAO().save(endereco);
     FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Gravação efetuada com sucesso", ""));
     }
 
     private void updateCliente() {
     clienteDAO().update(cliente);
+    endereco.setCliente(cliente);
+    enderecoDAO().update(endereco);
     FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Atualização efetuada com sucesso", ""));
     }
@@ -102,7 +111,7 @@ public class mdCliente implements Serializable {
     }
 
     public List<Cliente> getClientes() {
-        clientes = clienteDAO().getEntity();
+        clientes = clienteDAO().getEntities();
         return clientes;
     }
 
@@ -111,12 +120,20 @@ public class mdCliente implements Serializable {
     }
 
     public List<Endereco> getEnderecos() {
-        enderecos = enderecoDAO().getEntity();
+        enderecos = enderecoDAO().getEntities();
         return enderecos;
     }
 
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public String getConfereSenha() {
+        return confereSenha;
+    }
+
+    public void setConfereSenha(String confereSenha) {
+        this.confereSenha = confereSenha;
     }
 
     

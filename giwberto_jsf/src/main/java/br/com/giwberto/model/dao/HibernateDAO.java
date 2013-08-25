@@ -65,7 +65,7 @@ public class HibernateDAO<T> implements InterfaceDAO<T>{
     }
 
     @Override
-    public List<T> getEntity() {
+    public List<T> getEntities() {
         List<T> enties = (List <T>) session.createCriteria(classe).list();
         return enties;
     }

@@ -21,7 +21,7 @@ public interface InterfaceDAO<T> {
     T getEntity(Serializable Id);
     T getEntityByDetachedCriteria(DetachedCriteria criteria);
     T getEntityByHQLQuery(String stringQuery);
-    List<T> getEntity();
+    List<T> getEntities();
     List<T> getListByDetachedCriteria(DetachedCriteria criteria);
     
     

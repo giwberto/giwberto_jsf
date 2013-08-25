@@ -45,7 +45,7 @@ public class Endereco implements Serializable{
     @Column(name="complemento",length = 100)
     private String complemento;
     
-   @OneToOne(optional = true, fetch = FetchType.LAZY)
+   @OneToOne(optional = false, fetch = FetchType.LAZY)
    @ForeignKey(name = "enderecocliente")
    @JoinColumn(name="idCliente", referencedColumnName = "idCliente")
    private Cliente cliente;
@@ -65,6 +65,7 @@ public class Endereco implements Serializable{
     public Endereco() {
         this.cidade = new Cidade();
         this.estado = new Estado();
+        this.cliente = new Cliente();
         
     }
 
