@@ -103,6 +103,11 @@
                                 <p:inputText id="rua" size="75" value="#{mbCliente.endereco.rua}" 
                                              required="true" requiredMessage="É obrigatório o preenchimento do campo [Rua]"
                                              onkeyup="this.value = this.value.toUpperCase()"/>
+                                
+                                <h:outputLabel for="bairro" value="Bairro.:"/>
+                                <p:inputText id="bairro" size="75" value="#{mbCliente.endereco.bairro}" 
+                                             required="true" requiredMessage="É obrigatório o preenchimento do campo [Bairro]"
+                                             onkeyup="this.value = this.value.toUpperCase()"/>
 
                                 <h:outputLabel for="cep" value="CEP.:"/>
                                 <p:inputMask id="cep" size="10" value="#{mbCliente.endereco.cep}" mask="99999-999" required="true" requiredMessage="É obrigatório o preenchimento do campo [CEP]"/> 			

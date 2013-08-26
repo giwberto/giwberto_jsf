@@ -43,6 +43,12 @@
                     </f:facet>
                     <h:outputText value="#{cliente.telefone}"/>
                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="UF"/>
+                    </f:facet>
+                    <h:outputText value="#{cliente.endereco.estado.sigla}"/>
+                </p:column>
 
 
                 <p:column>
@@ -52,8 +58,16 @@
                     <p:commandButton action="#{mbCliente.editCliente}" value="Editar" image="ui-icon ui-icon-pencil" process="@this" update="@form" ajax="false">
                     
                         <f:setPropertyActionListener value="#{cliente}" target="#{mbCliente.cliente}" />
-                        <!--<f:setPropertyActionListener value="#{cliente}" target="#{mbCliente.cliente}" />-->
-                    
+                        <f:setPropertyActionListener value="#{cliente.idCliente}" target="#{mbCliente.cliente.idCliente}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco}" target="#{mbCliente.cliente.endereco}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.idEndereco}" target="#{mbCliente.endereco.idEndereco}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.cidade.idCidade}" target="#{mbCliente.endereco.cidade.idCidade}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.estado.idEstado}" target="#{mbCliente.endereco.estado.idEstado}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.bairro}" target="#{mbCliente.endereco.bairro}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.cep}" target="#{mbCliente.endereco.cep}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.complemento}" target="#{mbCliente.endereco.complemento}" />
+                        <f:setPropertyActionListener value="#{cliente.endereco.rua}" target="#{mbCliente.endereco.rua}" />
+                        
                     </p:commandButton>
                     <p:commandButton value="Cancelar" action="#{mbCliente.limpCliente}" image="ui-icon ui-icon-close" process="@this" update="@form"/>
                     
